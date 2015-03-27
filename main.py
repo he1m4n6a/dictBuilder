@@ -1,22 +1,18 @@
 #!/usr/bin/env python
+#coding=utf-8
 
+import string
 from optparse import OptionParser
 from frequency import frequency
 from easyDirectory import *
-
-def writeFile(fp, arr):
-    for ele in arr:
-        if ele != arr[-1:]:
-            fp.write(ele+'\n')
-        else:
-            fp.write(ele)
+from judge import *
 
 if __name__=='__main__':
     parser = OptionParser()
     parser.add_option("-f", "--file", dest="filename",
             help="input file", metavar="FILE")
-    parser.add_option("-s", action="store_true", dest="select",
-            help="select top number of directory")
+    parser.add_option("-m", "--mode", dest="mode",
+            help="select mode,default=normal", metavar="[normal|verify|frequency]")
     parser.add_option("-c", "--csv", dest="csv",
             help="set input file as csv format", metavar="CSV")
     parser.add_option("-o", "--output", dest="output",
@@ -26,39 +22,35 @@ if __name__=='__main__':
     
     (options, args) = parser.parse_args()
     
-    if options.filename != None and options.select:
-        wordArr = []
-        resArr = []
+    
+    wordArr = []
+    resArr = []
+    
+    #输入文件并选择整理最常用密码生成字典
+    if options.filename != None and options.mode == "frequency":
         text = open(options.filename, 'r')
-        for line in text.readlines():
-            if options.csv != None:
-                ele = line.split(',')
-                for e in ele:
-                    wordArr.append(e)
-            else:
-                wordArr.append(line.strip('\n'))
-        
-        #judge the num 
-        if options.num != None: 
-            try:
-                resList = frequency(wordArr, int(options.num))
-                for l in resList:
-                    resArr.append(l[0])
-            except:
-                parser.error("please input a num")
+        wordArr = judgeCsv(options, text)
+        resArr = judgeNum(options, wordArr, frequency)
+        judgeOut(options, resArr)
+    
+    #生成验证码字典
+    elif options.mode == "verify":
+        if options.filename != None:
+            text = open(options.filename, 'r')
+            wordArr = judgeCsv(options, text)       
         else:
-            resList = frequency(wordArr, 100)
-            for l in resList:
-                resArr.append(l[0])
-            
-        if options.output != None:
-            fp = open(options.output, 'w+')
-            writeFile(fp, resArr)
-            fp.close()
-        else:
-            fp = open("output.txt", "w+")
-            writeFile(fp, resArr)
-            fp.close()
+            #默认是数字的验证码
+            wordArr = string.digits
+                    
+        resArr = judgeNum(options, wordArr, verifyDir)
+        judgeOut(options, resArr)
         
-    elif options.filename != None:
-        pass
+    #生成普通的字典、社工字典(默认的模式)
+    elif options.filename != None or (options.filename != None and options.mode == "normal"):
+        text = open(options.filename, 'r')
+        wordArr = judgeCsv(options, text)
+        resArr = judgeNum(options, wordArr, normalDir)
+        judgeOut(options, resArr)
+        
+    else:
+        parser.error("请输入正确的参数")
