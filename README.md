@@ -1,7 +1,18 @@
 # easyPass
 >字典生成和整理工具，方便生成验证码字典，字符字典，方便筛选出使用密码最频繁的密码作为你的社工库
 
-用法
+
+#####结构
+
+    easyPass/
+    ├── easyDirectory.py
+    ├── frequency.py
+    ├── judge.py
+    ├── keyword.txt
+    ├── main.py
+    └── README.md
+
+#####用法
 
 Usage: main.py [options]
 
@@ -17,7 +28,7 @@ Options:
     -n NUM, --num=NUM     input number
   
   
-例子
+#####例子
 
     python mian.py -m "verify"
 
