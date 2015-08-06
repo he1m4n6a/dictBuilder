@@ -33,17 +33,12 @@ Options:
     python mian.py -m "verify"
 
 生成验证码字典，默认4个字符，生成更多字符加入-n参数
-<<<<<<< HEAD
 
     python main.py -f top500_user.txt -m "social" -o "output.txt"
 
 生成辅助爆破字典，-o指定输出的文件名
     
-    python main.py -f  keyword.txt -m "normal" -o "social_pass.txt"
-=======
-    
     python main.py -f keyword.txt -m "normal" -o "output.txt"
->>>>>>> 96b1edef7560f19263b901ce9e2e2353b00254f5
 
 迭代生成字符字典，-o指定输出的文件名，默认是output.txt
     
