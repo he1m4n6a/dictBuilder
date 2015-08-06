@@ -1,0 +1,14 @@
+{user}
+{user}0
+{user}1
+{user}123
+{user}321
+{user}123456
+{user}654321
+{user}@123
+{user}.123
+{user}.123456
+{user}..
+{user}!@#
+{user}#@!
+{user}!@#$%^
