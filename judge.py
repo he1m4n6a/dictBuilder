@@ -33,15 +33,12 @@ def judgeNum(options, wordArr, func):
         except:
             exit("error:请输入一个数字")
     else:
-<<<<<<< HEAD
         if func.__name__ == "frequency":
             resArr = func(wordArr, 100)
         elif func.__name__ == "social":
             resArr = func(wordArr)
-=======
         if func == "frequency":
             resArr = func(wordArr, 100)
->>>>>>> 96b1edef7560f19263b901ce9e2e2353b00254f5
         else:
             resArr = func(wordArr, 4)
     return resArr
