@@ -14,7 +14,6 @@ if __name__=='__main__':
             help="input file", metavar="FILE")
     parser.add_option("-m", "--mode", dest="mode",
             help="select mode,default=normal", metavar="[normal|verify|frequency|social]")
-            help="select mode,default=normal", metavar="[normal|verify|frequency]")
     parser.add_option("-c", "--csv", dest="csv",
             help="set input file as csv format", metavar="CSV")
     parser.add_option("-o", "--output", dest="output",
