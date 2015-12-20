@@ -14,6 +14,8 @@ if __name__=='__main__':
             help="input file", metavar="FILE")
     parser.add_option("-m", "--mode", dest="mode",
             help="select mode,default=normal", metavar="[normal|verify|frequency|social]")
+    parser.add_option("-s", "--string", dest="string",
+            help="input string when use verify mode", metavar="STR")
     parser.add_option("-c", "--csv", dest="csv",
             help="set input file as csv format", metavar="CSV")
     parser.add_option("-o", "--output", dest="output",
@@ -39,6 +41,9 @@ if __name__=='__main__':
         if options.filename != None:
             text = open(options.filename, 'r')
             wordArr = judgeCsv(options, text)       
+        elif options.string != None:
+            #根据输入的字符串生成验证码字典
+            wordArr = options.string
         else:
             #默认是数字的验证码
             wordArr = string.digits
