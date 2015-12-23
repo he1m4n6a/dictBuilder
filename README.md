@@ -1,10 +1,10 @@
-# easyPass
+# genPass
 >字典生成和字典整理工具，生成基于姓名关联的字典、爆破字典等，后渗透阶段方便对数据进行筛选、整理。
 
 
 #####结构
 
-    easyPass/
+    genPass/
     ├── easyDirectory.py
     ├── frequency.py
     ├── judge.py
